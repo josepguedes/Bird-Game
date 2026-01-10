@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bird Game</title>
+
+  <!-- Estilos -->
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #timer {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 44px;
+      font-family: Arial, sans-serif;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+    }
+
+    #popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      flex-direction: column;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      /* Adicionando transição suave */
+    }
+
+    #popup button {
+      padding: 15px 30px;
+      font-size: 1.4vw;
+      font-family: Arial, sans-serif;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #popup button:hover {
+      background: #218838;
+    }
+
+    #popup h1 {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 3vw;
+      margin-bottom: 20px;
+    }
+
+    #popup h2 {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 2vw;
+      margin-bottom: 10px;
+    }
+
+    #popup p {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 1vw;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+
+    #gameOverPopup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      flex-direction: column;
+    }
+
+    #gameOverPopup h1 {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 3vw;
+      margin-bottom: 20px;
+    }
+
+    #gameOverPopup p {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 1.5vw;
+      margin-bottom: 30px;
+    }
+
+    #gameOverPopup button {
+      padding: 15px 30px;
+      font-size: 1.4vw;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #gameOverPopup button:hover {
+      background: #c82333;
+    }
+  </style>
+
+  <!-- Import Map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Timer do Jogo -->
+  <div id="timer">Tempo: 0:00</div>
+
+  <!-- Popup Inicial -->
+  <div id="popup">
+    <h1>Bem-vindo ao Bird Game!</h1>
+    <h2>Objetivo</h2>
+    <p>Usa o cursor do teu rato para desviar o pássaro dos objetos em movimento. Caso colidas com um objeto, perderás o
+      jogo. <br> Boa sorte!</p>
+    <button id="startButton">Jogar</button>
+  </div>
+
+
+  <div id="gameOverPopup">
+    <h1>Game Over!</h1>
+    <p id="survivalTime"></p>
+    <button id="retryButton">Tentar Novamente</button>
+  </div>
+
+  <!-- Script Principal -->
+  <script type="module" src="./main.js"></script>
+
+  <!-- Script do Popup -->
+  <script>
+    const popup = document.getElementById('popup');
+    const startButton = document.getElementById('startButton');
+
+    let gameStarted = false;
+
+    let timerInterval;
+    let gameTime = 0;
+
+    startButton.addEventListener('click', () => {
+      popup.style.opacity = 0;
+
+      setTimeout(() => {
+        popup.style.display = 'none';
+        gameStarted = true;
+      }, 100);
+
+      gameTime = 0;
+      const timerDiv = document.getElementById("timer");
+      // Store the interval ID
+      timerInterval = setInterval(() => {
+        gameTime += 1;
+        let minutes = Math.floor(gameTime / 60);
+        let seconds = gameTime % 60;
+        timerDiv.textContent = `Tempo: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+      }, 1000);
+    });
+  </script>
+</body>
+
+</html>
