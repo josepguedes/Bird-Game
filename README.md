@@ -1,76 +1,47 @@
-# Bird Game
+# Bird Game 3D 🦅
 
-A 3D browser-based game built with Three.js where you control a bird navigating through obstacles.
+A high-performance, frame-rate independent 3D browser game built with Three.js. Control a bird flying through dynamic biomes, complete progressive flight objectives, manage wing stamina, collect golden feathers and energy shield power-ups, avoid hazardous obstacles & stunt airplanes, and set new high scores!
 
-## About
+## 🚀 Key Features & Enhancements
 
-This is a simple endless runner game featuring a 3D bird that must avoid obstacles while flying. The game increases in difficulty over time as the speed progressively increases. Your goal is to survive as long as possible!
+- 🎯 **Dynamic Objectives System**: Active in-game mission tracker (`#objectiveCard`) featuring sequential flight goals (e.g. *Collector Aprendiz*, *Voo de Sobrevivência*, *Escudo Protótipo*, *Deserto Solar*...). Unlocks celebratory fanfare chimes, bonus points (+100 to +500 PTS), and stamina refills upon completion!
+- ⚡ **Wings Stamina & Energy Gauge**: Tactical boost management with a visual bottom-center energy bar. Impulses consume stamina, which regenerates naturally over time and recharges when picking up golden feathers and shield orbs.
+- 👁️ **Ultra High-Contrast UI Visibility**: Redesigned dark glassmorphic cards with opaque backings (`rgba(10, 16, 28, 0.90)`), bright neon borders, text shadow legibility filters (`text-shadow`), color-coded status badges, and enhanced contrast across all daylight, sunset, arctic, and night biomes.
+- 📏 **Flight Vector Reticle & Altitude Ruler**: Vertical height gauge on the screen edge and a floating flight target reticle for precision flying and aiming at collectible clusters.
+- 🛡️ **Energy Shield Power-Ups**: Collect floating blue energy orbs to equip a 3D wireframe shield bubble around the bird. Absorbs 1 fatal obstacle or stunt airplane crash!
+- ⚡ **Combo Multiplier System**: Collect golden feathers in rapid succession (< 3s) to build up combo multipliers (`x2`, `x3`, `x4`...) with ascending sound chimes and bonus points!
+- 💨 **Flap Boost Ability & Dual Controls**: Control flight altitude using either **Mouse Vertical Steering** or **Keyboard** (`W`/`S` or `Up`/`Down` Arrow keys). Press `Spacebar` or `Click` to trigger an active Flap Boost with wind particle bursts.
+- ⏸️ **Pause & Resume System**: Press `ESC` or `P` or click the HUD pause button to pause the flight at any time.
+- ⏱️ **Monitor Hz Frame-Rate Independence**: Movement, physics, lerping, and difficulty scaling are standardized across all monitor refresh rates (60Hz, 120Hz, 144Hz, 240Hz+) using `THREE.Clock` delta timing.
+- 🔊 **Synthesized Web Audio Engine**: Zero-dependency Web Audio API sound engine for wing flap swooshes, feather pickup chimes, objective completion fanfare, shield activation/shatter FX, crash thuds, and UI button sounds.
+- 🌍 **Dynamic Biomes**: Procedural environmental transitions between *Floresta Lush*, *Deserto do Pôr-do-Sol*, *Glaciar Ártico*, and *Noite Cósmica*.
 
-## Technologies Used
+## 🕹️ Controls
 
-- **Three.js** - JavaScript 3D library for rendering 3D graphics in the browser
-- **HTML5** - Structure and canvas element
-- **CSS3** - Styling and UI elements
-- **JavaScript (ES6+)** - Game logic and animations
-- **OrbitControls** - Three.js addon for camera controls
+- **Vertical Steering**: Mouse movement OR `W` / `S` / `Up` / `Down` Arrow keys
+- **Flap Boost**: `Spacebar` OR Left Mouse Click (consumes Wings Stamina)
+- **Pause Game**: `ESC` OR `P` key OR Pause button in HUD
+- **Sound Toggle**: Speaker icon button in Top HUD
 
-## Features
+## 🛠️ Running Locally
 
-- 3D graphics with realistic lighting and shadows
-- Dynamic cloud generation
-- Progressive difficulty increase
-- Timer to track survival time
-- Game over and restart functionality
-- Smooth bird movement and animations
+Run any local web server in the project directory:
 
-## How to Start
+```bash
+# Option 1: Node.js (Built-in server)
+node -e "const http = require('http'), fs = require('fs'), path = require('path'); http.createServer((req, res) => { let p = '.' + req.url; if (p === './') p = './index.html'; fs.readFile(p, (e, c) => res.end(c)); }).listen(8000);"
 
-1. **Clone or download the project**
-   ```bash
-   git clone <repository-url>
-   cd Bird-Game
-   ```
+# Option 2: Python
+python -m http.server 8000
+```
 
-2. **Install dependencies**
-   
-   This project uses ES6 modules with Three.js. You'll need a local development server to run it.
+Then open `http://localhost:8000` in your web browser.
 
-   Option 1 - Using Python (if installed):
-   ```bash
-   python -m http.server 8000
-   ```
-
-   Option 2 - Using Node.js with npx:
-   ```bash
-   npx http-server -p 8000
-   ```
-
-   Option 3 - Using VS Code Live Server extension
-
-3. **Open in browser**
-   
-   Navigate to `http://localhost:8000` in your web browser
-
-4. **Play the game**
-   - Click "Start Game" to begin
-   - Use mouse controls to move the bird up and down
-   - Avoid obstacles to stay alive
-   - Try to beat your best time!
-
-## Controls
-
-- **Mouse Movement** - Control the bird's vertical position
-- **Retry Button** - Restart the game after game over
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 Bird-Game/
-├── index.html    # Main HTML file with game UI
-├── main.js       # Game logic and Three.js implementation
-└── README.md     # This file
+├── index.html    # Game UI layout, HUD elements, CSS styles, glassmorphic modals & objectives panel
+├── main.js       # Core 3D engine, frame-rate fix, audio synthesizer, objectives engine & physics
+└── README.md     # Documentation and guide
 ```
-
-## Credits
-
-Developed as part of Computer Graphics coursework at Instituto Politécnico do Porto.
