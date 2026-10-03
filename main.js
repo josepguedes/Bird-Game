@@ -280,7 +280,7 @@ scene.fog = new THREE.FogExp2(BIOMES[0].fogColor.getHex(), 0.012);
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
 renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -339,8 +339,23 @@ let objectivesCompletedCount = 0;
 let totalFlapsPerformed = 0;
 let totalShieldsCollected = 0;
 
-// High Precision Clock
-const clock = new THREE.Clock();
+// High Precision Game Timer (replacing deprecated THREE.Clock)
+class GameTimer {
+    constructor() {
+        this.startTime = performance.now();
+        this.lastTime = performance.now();
+    }
+    getDelta() {
+        const now = performance.now();
+        const delta = (now - this.lastTime) / 1000;
+        this.lastTime = now;
+        return delta;
+    }
+    getElapsedTime() {
+        return (performance.now() - this.startTime) / 1000;
+    }
+}
+const clock = new GameTimer();
 
 // UI & Modal Elements
 const hudScoreEl = document.getElementById('scoreVal');
@@ -832,42 +847,8 @@ function triggerParticleBurst(pos, isBlue = false) {
 }
 
 function emitSkinParticle(effectType) {
-    if (!effectType) return;
-    const idx = Math.floor(Math.random() * PARTICLE_MAX);
-    particlePositions[idx * 3] = birdGroup.position.x - 0.6;
-    particlePositions[idx * 3 + 1] = birdGroup.position.y + (Math.random() - 0.5) * 0.3;
-    particlePositions[idx * 3 + 2] = birdGroup.position.z + (Math.random() - 0.5) * 0.3;
-
-    if (effectType === 'flame') {
-        particleColors[idx * 3] = 1.0;
-        particleColors[idx * 3 + 1] = Math.random() * 0.5 + 0.2;
-        particleColors[idx * 3 + 2] = 0.0;
-    } else if (effectType === 'cyber') {
-        particleColors[idx * 3] = 0.1;
-        particleColors[idx * 3 + 1] = 0.8;
-        particleColors[idx * 3 + 2] = 1.0;
-    } else if (effectType === 'emerald') {
-        particleColors[idx * 3] = 0.2;
-        particleColors[idx * 3 + 1] = 0.9;
-        particleColors[idx * 3 + 2] = 0.4;
-    } else if (effectType === 'shadow') {
-        particleColors[idx * 3] = 0.5;
-        particleColors[idx * 3 + 1] = 0.2;
-        particleColors[idx * 3 + 2] = 0.9;
-    } else if (effectType === 'gold') {
-        particleColors[idx * 3] = 1.0;
-        particleColors[idx * 3 + 1] = 0.85;
-        particleColors[idx * 3 + 2] = 0.2;
-    }
-
-    particleVelocities[idx].set(
-        -0.08 - Math.random() * 0.05,
-        (Math.random() - 0.5) * 0.04,
-        (Math.random() - 0.5) * 0.04
-    );
-
-    particleGeo.attributes.position.needsUpdate = true;
-    particleGeo.attributes.color.needsUpdate = true;
+    // Continuous tail particle trail disabled to keep bird flight clean and free of tail artifacts
+    return;
 }
 
 // --- SLEEK ORGANIC 3D BIRD MODEL ---
@@ -1030,7 +1011,7 @@ const SKINS = [
     {
         id: "phoenix",
         name: "Fénix Flamejante 🔥",
-        desc: "Asas de fogo e rasto de faíscas incandescentes.",
+        desc: "Asas de fogo encarnado aerodinâmicas e plumagem dourada.",
         cost: 300,
         primaryColor: 0xdc2626,
         bellyColor: 0xfef08a,
@@ -1038,12 +1019,12 @@ const SKINS = [
         beakColor: 0x7c2d12,
         eyeIrisColor: 0xfde047,
         previewGradient: "linear-gradient(135deg, #dc2626, #f59e0b)",
-        effectType: "flame"
+        effectType: null
     },
     {
         id: "cyber_hawk",
         name: "Cyber Neon ⚡",
-        desc: "Estilo futurista com rasto de partículas neon ciano.",
+        desc: "Estilo futurista com acabamento em liga cibernética ciano.",
         cost: 800,
         primaryColor: 0x1e1b4b,
         bellyColor: 0x38bdf8,
@@ -1051,12 +1032,12 @@ const SKINS = [
         beakColor: 0xa855f7,
         eyeIrisColor: 0x22d3ee,
         previewGradient: "linear-gradient(135deg, #1e1b4b, #c084fc)",
-        effectType: "cyber"
+        effectType: null
     },
     {
         id: "emerald_falcon",
         name: "Falcão Esmeralda 🌿",
-        desc: "Esmeralda nobre polida com rasto de faíscas místicas.",
+        desc: "Esmeralda nobre polida com estrutura e plumagem nobres.",
         cost: 1500,
         primaryColor: 0x047857,
         bellyColor: 0xd1fae5,
@@ -1064,12 +1045,12 @@ const SKINS = [
         beakColor: 0xd97706,
         eyeIrisColor: 0x34d399,
         previewGradient: "linear-gradient(135deg, #047857, #34d399)",
-        effectType: "emerald"
+        effectType: null
     },
     {
         id: "shadow_raven",
         name: "Corvo das Sombras 🌑",
-        desc: "Plumagem negra obsidiana com rasto de partículas do vazio.",
+        desc: "Plumagem negra obsidiana stealth e bico de alta precisão.",
         cost: 2800,
         primaryColor: 0x0f172a,
         bellyColor: 0x475569,
@@ -1077,12 +1058,12 @@ const SKINS = [
         beakColor: 0x312e81,
         eyeIrisColor: 0x818cf8,
         previewGradient: "linear-gradient(135deg, #0f172a, #818cf8)",
-        effectType: "shadow"
+        effectType: null
     },
     {
         id: "celestial_gold",
         name: "Aura Celestial Dourada 🌟",
-        desc: "Lendário pássaro de ouro 24k com rasto de poeira estelar.",
+        desc: "Lendário pássaro de ouro 24k com brilho metálico soberbo.",
         cost: 5000,
         primaryColor: 0xf59e0b,
         bellyColor: 0xfffbe8,
@@ -1090,7 +1071,7 @@ const SKINS = [
         beakColor: 0x78350f,
         eyeIrisColor: 0xfef08a,
         previewGradient: "linear-gradient(135deg, #f59e0b, #fde047)",
-        effectType: "gold"
+        effectType: null
     }
 ];
 

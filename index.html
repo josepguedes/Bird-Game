@@ -7,6 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Bird Game 3D 🦅</title>
 
+  <!-- Web App Favicon & Browser Bar Icons -->
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1119,12 +1125,7 @@
     <div class="hud-group">
       <!-- Live Score -->
       <div class="hud-card score-badge">
-        <svg class="hud-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <polygon
-            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-          </polygon>
-        </svg>
+        <img src="favicon.png" alt="App Icon" class="hud-icon-svg" style="border-radius: 6px; object-fit: cover; border: 1px solid rgba(16, 185, 129, 0.6); box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);">
         <div>
           <div class="hud-label">Pontuação</div>
           <div class="hud-val" id="scoreVal">0</div>
@@ -1297,15 +1298,11 @@
     <!-- Header Bar -->
     <div class="dashboard-header">
       <div class="game-logo-brand">
-        <div class="game-logo-icon">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
+        <img src="favicon.png" alt="Bird Game 3D Logo" style="width: 52px; height: 52px; border-radius: 14px; object-fit: cover; border: 2px solid rgba(56, 189, 248, 0.6); box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);">
+        <div>
+          <div class="game-logo-title" style="line-height: 1;">BIRD GAME 3D</div>
+          <div style="font-size: 0.72rem; color: #38bdf8; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 3px;">ESTG • COMPUTACÃO GRÁFICA</div>
         </div>
-        <div class="game-logo-title">BIRD GAME 3D</div>
       </div>
 
       <div class="dashboard-top-stats">
@@ -1379,13 +1376,7 @@
     <!-- Header -->
     <div class="dashboard-header">
       <div class="game-logo-brand">
-        <div class="game-logo-icon" style="background: linear-gradient(135deg, #d97706, #fbbf24);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.5">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
-          </svg>
-        </div>
+        <img src="favicon.png" alt="Bird Game Icon" style="width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 2px solid rgba(251, 191, 36, 0.6); box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);">
         <div class="game-logo-title"
           style="background: linear-gradient(135deg, #ffffff, #fbbf24); -webkit-background-clip: text;">LOJA DE SKINS 3D
         </div>
@@ -1436,16 +1427,11 @@
   <!-- Modal Créditos -->
   <div id="creditsModal" class="modal-overlay hidden">
     <div class="modal-box modal-box-wide">
-      <div class="modal-header-icon"
-        style="background: rgba(56, 189, 248, 0.2); border-color: rgba(56, 189, 248, 0.5);">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <path d="M12 16v-4M12 8h.01"></path>
-        </svg>
+      <div style="margin: 0 auto 16px; width: 80px; height: 80px; border-radius: 20px; overflow: hidden; border: 2px solid rgba(56, 189, 248, 0.5); box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);">
+        <img src="logo.png" alt="Bird Game 3D Logo" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
       <h1 class="modal-title">Créditos & Tecnologia</h1>
-      <p class="modal-subtitle">Bird Game 3D • Desenvolvido para a Unidade Curricular de Computação Gráfica</p>
+      <p class="modal-subtitle">Bird Game 3D • ESTG - Unidade Curricular de Computação Gráfica</p>
 
       <div class="credits-grid">
         <div class="credits-card">
@@ -1500,10 +1486,7 @@
         <div class="credits-card">
           <div class="credits-card-header">
             <div class="credits-icon-pill">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>
+              <img src="favicon.png" alt="Icon" style="width: 20px; height: 20px; border-radius: 5px; object-fit: cover;">
             </div>
             <div>
               <div class="credits-role">Mecânicas & UI</div>
@@ -1561,12 +1544,7 @@
   <div id="gameOverPopup" class="modal-overlay hidden">
     <div class="modal-box">
       <div id="newRecordBadge" class="new-record-badge" style="display: none;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <polygon
-            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-          </polygon>
-        </svg>
+        <img src="favicon.png" alt="Icon" style="width: 16px; height: 16px; border-radius: 4px; object-fit: cover; vertical-align: middle;">
         NOVO RECORDE ALCANÇADO!
       </div>
       <div class="modal-header-icon" style="background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.3);">
