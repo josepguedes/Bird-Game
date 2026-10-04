@@ -233,7 +233,7 @@ const soundEngine = new SoundEngine();
 // --- DYNAMIC BIOMES CONFIGURATION ---
 const BIOMES = [
     {
-        name: "Floresta Lush",
+        name: "Lush Forest",
         minScore: 0,
         skyColor: new THREE.Color(0x7dd3fc),
         fogColor: new THREE.Color(0xbae6fd),
@@ -242,7 +242,7 @@ const BIOMES = [
         ambientColor: new THREE.Color(0xfffbe8)
     },
     {
-        name: "Deserto do Pôr-do-Sol",
+        name: "Sunset Desert",
         minScore: 180, // Reached after ~1.5 to 2 minutes of active flight
         skyColor: new THREE.Color(0xf97316),
         fogColor: new THREE.Color(0xfdba74),
@@ -251,7 +251,7 @@ const BIOMES = [
         ambientColor: new THREE.Color(0xfef08a)
     },
     {
-        name: "Glaciar Ártico",
+        name: "Arctic Glacier",
         minScore: 450, // Reached after ~3.5 to 4.5 minutes
         skyColor: new THREE.Color(0x0284c7),
         fogColor: new THREE.Color(0xe0f2fe),
@@ -260,7 +260,7 @@ const BIOMES = [
         ambientColor: new THREE.Color(0xf0f9ff)
     },
     {
-        name: "Noite Cósmica",
+        name: "Cosmic Night",
         minScore: 850, // Reached after ~6+ minutes of master flight
         skyColor: new THREE.Color(0x0f172a),
         fogColor: new THREE.Color(0x1e1b4b),
@@ -324,14 +324,14 @@ const BOOST_STAMINA_COST = 25;
 
 // Dynamic Objectives System
 const OBJECTIVES_LIST = [
-    { id: 1, title: "Colector Aprendiz", desc: "Apanha 3 Penas Douradas", target: 3, type: "feathers", rewardPts: 30 },
-    { id: 2, title: "Voo de Sobrevivência", desc: "Sobrevive por 25 Segundos", target: 25, type: "time", rewardPts: 40 },
-    { id: 3, title: "Mestre dos Combos", desc: "Alcança um Combo de x2", target: 2, type: "combo", rewardPts: 45 },
-    { id: 4, title: "Escudo Protótipo", desc: "Apanha 1 Orbe de Escudo Azul", target: 1, type: "shields", rewardPts: 50 },
-    { id: 5, title: "Piloto Agérrimo", desc: "Alcança 100 Pontos", target: 100, type: "score", rewardPts: 60 },
-    { id: 6, title: "Deserto Solar", desc: "Alcança 180 Pontos (Bioma Deserto)", target: 180, type: "score", rewardPts: 100 },
-    { id: 7, title: "Colector de Elite", desc: "Apanha 8 Penas Douradas", target: 8, type: "feathers", rewardPts: 80 },
-    { id: 8, title: "As do Céu", desc: "Alcança 450 Pontos (Bioma Glaciar)", target: 450, type: "score", rewardPts: 150 }
+    { id: 1, title: "Apprentice Collector", desc: "Collect 3 Golden Feathers", target: 3, type: "feathers", rewardPts: 30 },
+    { id: 2, title: "Survival Flight", desc: "Survive for 25 Seconds", target: 25, type: "time", rewardPts: 40 },
+    { id: 3, title: "Combo Master", desc: "Reach a x2 Combo", target: 2, type: "combo", rewardPts: 45 },
+    { id: 4, title: "Prototype Shield", desc: "Collect 1 Blue Shield Orb", target: 1, type: "shields", rewardPts: 50 },
+    { id: 5, title: "Avid Aviator", desc: "Reach 100 Points", target: 100, type: "score", rewardPts: 60 },
+    { id: 6, title: "Solar Desert", desc: "Reach 180 Points (Desert Biome)", target: 180, type: "score", rewardPts: 100 },
+    { id: 7, title: "Elite Collector", desc: "Collect 8 Golden Feathers", target: 8, type: "feathers", rewardPts: 80 },
+    { id: 8, title: "Sky Ace", desc: "Reach 450 Points (Glacier Biome)", target: 450, type: "score", rewardPts: 150 }
 ];
 
 let currentObjectiveIndex = 0;
@@ -997,8 +997,8 @@ scene.add(birdGroup);
 const SKINS = [
     {
         id: "blue_jay",
-        name: "Águia Azul",
-        desc: "Plumagem clássica azul ciano com crista dourada reluzente.",
+        name: "Blue Eagle",
+        desc: "Classic cyan blue plumage with glowing gold crest.",
         cost: 0,
         primaryColor: 0x0284c7,
         bellyColor: 0xfff8e7,
@@ -1010,8 +1010,8 @@ const SKINS = [
     },
     {
         id: "phoenix",
-        name: "Fénix Flamejante 🔥",
-        desc: "Asas de fogo encarnado aerodinâmicas e plumagem dourada.",
+        name: "Blazing Phoenix 🔥",
+        desc: "Aerodynamic fiery red wings and radiant golden plumage.",
         cost: 300,
         primaryColor: 0xdc2626,
         bellyColor: 0xfef08a,
@@ -1024,7 +1024,7 @@ const SKINS = [
     {
         id: "cyber_hawk",
         name: "Cyber Neon ⚡",
-        desc: "Estilo futurista com acabamento em liga cibernética ciano.",
+        desc: "Futuristic cyber alloy finish with glowing cyan accents.",
         cost: 800,
         primaryColor: 0x1e1b4b,
         bellyColor: 0x38bdf8,
@@ -1036,8 +1036,8 @@ const SKINS = [
     },
     {
         id: "emerald_falcon",
-        name: "Falcão Esmeralda 🌿",
-        desc: "Esmeralda nobre polida com estrutura e plumagem nobres.",
+        name: "Emerald Falcon 🌿",
+        desc: "Polished emerald body with regal jade plumage.",
         cost: 1500,
         primaryColor: 0x047857,
         bellyColor: 0xd1fae5,
@@ -1049,8 +1049,8 @@ const SKINS = [
     },
     {
         id: "shadow_raven",
-        name: "Corvo das Sombras 🌑",
-        desc: "Plumagem negra obsidiana stealth e bico de alta precisão.",
+        name: "Shadow Raven 🌑",
+        desc: "Stealth obsidian black feathers with precision beak.",
         cost: 2800,
         primaryColor: 0x0f172a,
         bellyColor: 0x475569,
@@ -1062,8 +1062,8 @@ const SKINS = [
     },
     {
         id: "celestial_gold",
-        name: "Aura Celestial Dourada 🌟",
-        desc: "Lendário pássaro de ouro 24k com brilho metálico soberbo.",
+        name: "Celestial Gold 🌟",
+        desc: "Legendary 24k solid gold bird with majestic metallic shine.",
         cost: 5000,
         primaryColor: 0xf59e0b,
         bellyColor: 0xfffbe8,
@@ -1165,16 +1165,16 @@ function updatePreviewCard(skinId) {
     const isEquipped = equippedSkinId === skin.id;
 
     if (rarityEl) {
-        rarityEl.textContent = skin.cost === 0 ? "SKIN INICIAL" : skin.cost >= 600 ? "SKIN LENDÁRIA" : "SKIN RARA";
+        rarityEl.textContent = skin.cost === 0 ? "STARTER SKIN" : skin.cost >= 600 ? "LEGENDARY SKIN" : "RARE SKIN";
     }
 
     if (actionBtn) {
         if (isEquipped) {
-            actionBtn.innerHTML = `<span>✓ EQUIPADO</span>`;
+            actionBtn.innerHTML = `<span>✓ EQUIPPED</span>`;
             actionBtn.className = "btn-primary btn-shop-active";
             actionBtn.onclick = null;
         } else if (isUnlocked) {
-            actionBtn.innerHTML = `<span>EQUIPAR SKIN</span>`;
+            actionBtn.innerHTML = `<span>EQUIP SKIN</span>`;
             actionBtn.className = "btn-primary";
             actionBtn.onclick = () => {
                 soundEngine.playCollectSound();
@@ -1183,7 +1183,7 @@ function updatePreviewCard(skinId) {
             };
         } else {
             const canAfford = bankedPoints >= skin.cost;
-            actionBtn.innerHTML = `<span>COMPRAR POR ${skin.cost} PTS</span>`;
+            actionBtn.innerHTML = `<span>BUY FOR ${skin.cost} PTS</span>`;
             actionBtn.className = `btn-primary ${canAfford ? 'btn-gold' : 'btn-secondary'}`;
             actionBtn.onclick = () => {
                 if (bankedPoints >= skin.cost) {
@@ -1223,7 +1223,7 @@ function renderShopShowroom() {
                 <div class="skin-row-title">${skin.name} ${isEquipped ? '✓' : ''}</div>
                 <div class="skin-row-desc">${skin.desc}</div>
             </div>
-            <div class="skin-row-price">${isEquipped ? 'Em uso' : isUnlocked ? 'Adquirida' : skin.cost + ' Pts'}</div>
+            <div class="skin-row-price">${isEquipped ? 'Equipped' : isUnlocked ? 'Unlocked' : skin.cost + ' Pts'}</div>
         `;
 
         card.addEventListener('mouseenter', () => {
@@ -1341,13 +1341,13 @@ function getCurrentObjective() {
     const subIdx = (currentObjectiveIndex - OBJECTIVES_LIST.length) % 3;
     if (subIdx === 0) {
         const target = 12 + cycle * 5;
-        return { title: `Mestre das Penas Mk.${cycle+1}`, desc: `Apanha ${target} Penas Douradas`, target: target, type: "feathers", rewardPts: 450 + cycle * 100 };
+        return { title: `Feather Master Mk.${cycle+1}`, desc: `Collect ${target} Golden Feathers`, target: target, type: "feathers", rewardPts: 450 + cycle * 100 };
     } else if (subIdx === 1) {
         const target = 45 + cycle * 25;
-        return { title: `Sobrevivente Mk.${cycle+1}`, desc: `Sobrevive por ${target}s`, target: target, type: "time", rewardPts: 500 + cycle * 100 };
+        return { title: `Sky Survivor Mk.${cycle+1}`, desc: `Survive for ${target}s`, target: target, type: "time", rewardPts: 500 + cycle * 100 };
     } else {
         const target = 100 + cycle * 40;
-        return { title: `Lenda do Céu Mk.${cycle+1}`, desc: `Alcança ${target} Pontos`, target: target, type: "score", rewardPts: 600 + cycle * 150 };
+        return { title: `Sky Legend Mk.${cycle+1}`, desc: `Reach ${target} Points`, target: target, type: "score", rewardPts: 600 + cycle * 150 };
     }
 }
 
@@ -1391,7 +1391,7 @@ function updateObjectiveUI() {
         stamina = Math.min(MAX_STAMINA, stamina + 50); // Stamina bonus reward
         soundEngine.playObjectiveCompleteSound();
         triggerParticleBurst(birdGroup.position, false);
-        showObjectiveToast(`🎯 MISSÃO CUMPRIDA! +${obj.rewardPts} PTS!`);
+        showObjectiveToast(`🎯 OBJECTIVE COMPLETED! +${obj.rewardPts} PTS!`);
 
         currentObjectiveIndex++;
         updateObjectiveUI();
